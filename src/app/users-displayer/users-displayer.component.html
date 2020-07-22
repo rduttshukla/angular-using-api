@@ -1,0 +1,23 @@
+<h2>List of Available users</h2>
+<table>
+  <tr>
+    <ul *ngIf="users">
+      <li *ngFor="let user of users.data" (click)="onClick(user)" [class.selected] = "user === selectedUser">
+        <p class="name">
+          {{ user.first_name }} {{ user.last_name }}
+        </p>
+      </li>
+    </ul> 
+  <td *ngIf="selectedUser">
+    <img [src] = "selectedUser.avatar">
+    <p><b>Name: </b> {{selectedUser.first_name}} {{selectedUser.last_name}}</p>
+    <p><b>E-mail </b> {{selectedUser.email}}</p>
+    <button (click)="updateUser(selectedUser.id)">Update user</button>
+  </td>
+  <td *ngIf="selectedUserId">
+    Name: <input [(ngModel)] = "selectedUserCopy.first_name" #updateName placeholder="name...">
+    Email: <input [(ngModel)] = "selectedUserCopy.email" #updateEmail placeholdr="email...">
+    <button (click) = "update(selectedUser.id, updateName.value, updateEmail.value)" type="button">Update Details</button>
+  </td>
+  </tr>
+</table>
